@@ -129,6 +129,6 @@ else:
     S3_BUCKET_DEMO = os.environ.get('S3_BUCKET_DEMO')
 
 if os.environ.get('S3_FILE_DEMO') is None or os.environ.get('S3_FILE_DEMO')=="":
-    S3_FILE_DEMO = 'duploservices-default-demoservice'
+    S3_FILE_DEMO = 'duplo-text.txt'
 else:
     S3_FILE_DEMO = os.environ.get('S3_FILE_DEMO')
