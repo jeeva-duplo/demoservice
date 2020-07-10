@@ -19,9 +19,9 @@ from . import views
 
 urlpatterns = [
     url(r'^(?i)admin/', admin.site.urls),
-    url(r'^(?i)getInfo', views.getInfo),
+    url(r'^getInfo/$', views.getInfo),
     url(r'^getS3InfoFromFile/$', views.getS3InfoFromFile),
-    url( r'^getS3FileListWithBucket/$', views.getS3FileListWithBucket),
+    url(r'^getS3FileListWithBucket/$', views.getS3FileListWithBucket),
     url(r'^getS3FileList/$', views.getS3FileList),
     url(r'^getS3Info/$', views.getS3Info),
     url(r'^$', views.getInfo),

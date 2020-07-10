@@ -119,3 +119,16 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+
+if os.environ.get('S3_BUCKET_DEMO') is None or os.environ.get('S3_BUCKET_DEMO')=="":
+    #S3_BUCKET_DEMO = 'duploservices-default-demoservice'
+    S3_BUCKET_DEMO = 'duploservices-lambda-django'
+else:
+    S3_BUCKET_DEMO = os.environ.get('S3_BUCKET_DEMO')
+
+if os.environ.get('S3_FILE_DEMO') is None or os.environ.get('S3_FILE_DEMO')=="":
+    S3_FILE_DEMO = 'duploservices-default-demoservice'
+else:
+    S3_FILE_DEMO = os.environ.get('S3_FILE_DEMO')

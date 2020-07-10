@@ -12,28 +12,30 @@ from django.views.decorators.http import require_GET
 from django.views.decorators.http import require_POST
 from .s3_utils import S3Utils
 
+from django.conf import settings
+
 @require_GET
 def getInfo(httpRequest):
 	response = """
-	<html><body> 
-</br></br>
-S3_BUCKET_DEMO=   {0}
-</br></br>
-S3_FILE_DEMO={1}
-</br></br> 
-</br>
-<a href="http://127.0.0.1:8000/getInfo"> URI: getInfo </a>
-</br></br>
-<a href="http://127.0.0.1:8000/getS3FileList">URI:  getS3FileList </a>
-</br></br>
-<a href="http://127.0.0.1:8000/getS3Info">URI:  getS3Info</a>
-</br></br>
-<a href="http://127.0.0.1:8000/getS3FileListWithBucket?s3_bucket=duploservices-default-demoservice">URI:  getS3FileListWithBucket?s3_bucket=duploservices-default-demoservice </a>
-</br></br>
-<a href="http://127.0.0.1:8000/getS3InfoFromFile?s3_bucket=duploservices-default-demoservice&s3_file=duplo-text.txt"> URI: getS3InfoFromFile?s3_bucket=duploservices-default-demoservice&s3_file=duplo-text.txt </a>
-</body></html> 
+		<html><body> 
+		</br></br>
+		S3_BUCKET_DEMO =   {0}
+		</br></br>
+		S3_FILE_DEMO = {1}
+		</br></br> 
+		</br>
+		<a href="http://127.0.0.1:8000/getInfo"> URI: getInfo </a>
+		</br></br>
+		<a href="http://127.0.0.1:8000/getS3FileList">URI:  getS3FileList </a>
+		</br></br>
+		<a href="http://127.0.0.1:8000/getS3Info">URI:  getS3Info</a>
+		</br></br>
+		<a href="http://127.0.0.1:8000/getS3FileListWithBucket?s3_bucket=duploservices-default-demoservice">URI:  getS3FileListWithBucket?s3_bucket=duploservices-default-demoservice </a>
+		</br></br>
+		<a href="http://127.0.0.1:8000/getS3InfoFromFile?s3_bucket=duploservices-default-demoservice&s3_file=duplo-text.txt"> URI: getS3InfoFromFile?s3_bucket=duploservices-default-demoservice&s3_file=duplo-text.txt </a>
+		</body></html> 
 	"""
-	response = response.format( os.environ.get('S3_BUCKET_DEMO'),  os.environ.get('S3_FILE_DEMO'))
+	response = response.format(settings.S3_BUCKET_DEMO, settings.S3_FILE_DEMO )
 	return HttpResponse(response, content_type="text/html")
 
 
@@ -43,7 +45,8 @@ S3_FILE_DEMO={1}
 def getS3FileList(httpRequest):
 	s3_utils = S3Utils()
 	response = s3_utils.get_s3_list_default()
-	return HttpResponse(",".join(response), content_type="text/html")
+	response_text = "<BR><BR>  &nbsp; &nbsp; , &nbsp;".join(response)
+	return HttpResponse( "<html><body>[<BR> &nbsp; &nbsp;   {0} <BR> ]</body></html>".format(response_text) , content_type="text/html")
 
 #read bucket from qs
 @require_GET
@@ -54,7 +57,8 @@ def getS3FileListWithBucket(httpRequest):
 		response = ["ERROR: parameter s3_bucket is required."]
 	else:
 		response = s3_utils.get_s3_list(s3_bucket)
-	return HttpResponse(",".join(response), content_type="text/html")
+	response_text = "<BR><BR> &nbsp; &nbsp; , &nbsp;".join(response)
+	return HttpResponse( "<html><body>[<BR> &nbsp; &nbsp; {0} <BR> ]</body></html>".format(response_text) , content_type="text/html")
 
 
 ############ s3 file #######
