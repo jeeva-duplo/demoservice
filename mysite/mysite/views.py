@@ -24,15 +24,15 @@ def getInfo(httpRequest):
 		S3_FILE_DEMO = {1}
 		</br></br> 
 		</br>
-		<a href="http://127.0.0.1:8000/getInfo"> URI: getInfo </a>
+		<a href="/getInfo"> URI: getInfo </a>
 		</br></br>
-		<a href="http://127.0.0.1:8000/getS3FileList">URI:  getS3FileList </a>
+		<a href="/getS3FileList">URI:  getS3FileList </a>
 		</br></br>
-		<a href="http://127.0.0.1:8000/getS3Info">URI:  getS3Info</a>
+		<a href="/getS3Info">URI:  getS3Info</a>
 		</br></br>
-		<a href="http://127.0.0.1:8000/getS3FileListWithBucket?s3_bucket=duploservices-default-demoservice">URI:  getS3FileListWithBucket?s3_bucket=duploservices-default-demoservice </a>
+		<a href="/getS3FileListWithBucket?s3_bucket=duploservices-default-demoservice">URI:  getS3FileListWithBucket?s3_bucket=duploservices-default-demoservice </a>
 		</br></br>
-		<a href="http://127.0.0.1:8000/getS3InfoFromFile?s3_bucket=duploservices-default-demoservice&s3_file=duplo-text.txt"> URI: getS3InfoFromFile?s3_bucket=duploservices-default-demoservice&s3_file=duplo-text.txt </a>
+		<a href="/getS3InfoFromFile?s3_bucket=duploservices-default-demoservice&s3_file=duplo-text.txt"> URI: getS3InfoFromFile?s3_bucket=duploservices-default-demoservice&s3_file=duplo-text.txt </a>
 		</body></html> 
 	"""
 	response = response.format(settings.S3_BUCKET_DEMO, settings.S3_FILE_DEMO )
