@@ -1,6 +1,6 @@
 from __future__ import absolute_import
 from __future__ import unicode_literals
-
+import os
 # Put Standard Library Imports Here:
 import json
 import traceback
@@ -14,7 +14,26 @@ from .s3_utils import S3Utils
 
 @require_GET
 def getInfo(httpRequest):
-	response = 'Welcome to Timatic Portal!'
+	response = """
+	<html><body> 
+</br></br>
+S3_BUCKET_DEMO=   {0}
+</br></br>
+S3_FILE_DEMO={1}
+</br></br> 
+</br>
+<a href="http://127.0.0.1:8000/getInfo"> URI: getInfo </a>
+</br></br>
+<a href="http://127.0.0.1:8000/getS3FileList">URI:  getS3FileList </a>
+</br></br>
+<a href="http://127.0.0.1:8000/getS3Info">URI:  getS3Info</a>
+</br></br>
+<a href="http://127.0.0.1:8000/getS3FileListWithBucket?s3_bucket=duploservices-default-demoservice">URI:  getS3FileListWithBucket?s3_bucket=duploservices-default-demoservice </a>
+</br></br>
+<a href="http://127.0.0.1:8000/getS3InfoFromFile?s3_bucket=duploservices-default-demoservice&s3_file=duplo-text.txt"> URI: getS3InfoFromFile?s3_bucket=duploservices-default-demoservice&s3_file=duplo-text.txt </a>
+</body></html> 
+	"""
+	response = response.format( os.environ.get('S3_BUCKET_DEMO'),  os.environ.get('S3_FILE_DEMO'))
 	return HttpResponse(response, content_type="text/html")
 
 
