@@ -30,9 +30,9 @@ def getInfo(httpRequest):
 		</br></br>
 		<a href="/getS3Info">URI:  getS3Info</a>
 		</br></br>
-		<a href="/getS3FileListWithBucket?s3_bucket=duploservices-default-demoservice">URI:  getS3FileListWithBucket?s3_bucket=duploservices-default-demoservice </a>
+		<a href="/getS3FileListWithBucket?s3_bucket={0}">URI:  getS3FileListWithBucket?s3_bucket={0} </a>
 		</br></br>
-		<a href="/getS3InfoFromFile?s3_bucket=duploservices-default-demoservice&s3_file=duplo-text.txt"> URI: getS3InfoFromFile?s3_bucket=duploservices-default-demoservice&s3_file=duplo-text.txt </a>
+		<a href="/getS3InfoFromFile?s3_bucket={0}&s3_file={1}"> URI: getS3InfoFromFile?s3_bucket={0}&s3_file={1} </a>
 		</body></html> 
 	"""
 	response = response.format(settings.S3_BUCKET_DEMO, settings.S3_FILE_DEMO )
