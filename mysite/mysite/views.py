@@ -17,24 +17,25 @@ from django.conf import settings
 @require_GET
 def getInfo(httpRequest):
 	response = """
-		<html><body> 
+		<html><body>
 		</br></br>
-		S3_BUCKET_DEMO =   {0}
+		ENV S3_BUCKET_DEMO =   {0}
 		</br></br>
-		S3_FILE_DEMO = {1}
-		</br></br> 
+		ENV S3_FILE_DEMO = {1}
+		</br></br>
 		</br>
-		<a href="/getInfo"> URI: getInfo </a>
+		<a href="/getInfo"> URI: getInfo</a>
 		</br></br>
-		<a href="/getS3FileList">URI:  getS3FileList </a>
+		<a href="/getS3Files">URI: getS3Files (file list)</a>
 		</br></br>
-		<a href="/getS3Info">URI:  getS3Info</a>
+		<a href="/getS3File">URI:  getS3File (file content)</a>
 		</br></br>
-		<a href="/getS3FileListWithBucket?s3_bucket={0}">URI:  getS3FileListWithBucket?s3_bucket={0} </a>
+		<a href="/getS3BucketFiles?s3_bucket={0}">URI:  getS3BucketFiles?s3_bucket={0} (file list with qs-params)</a>
 		</br></br>
-		<a href="/getS3InfoFromFile?s3_bucket={0}&s3_file={1}"> URI: getS3InfoFromFile?s3_bucket={0}&s3_file={1} </a>
-		</body></html> 
+		<a href="/getS3BucketFile?s3_bucket={0}&s3_file={1}"> URI: getS3BucketFile?s3_bucket={0}&s3_file={1}  (file content with qs-params)</a>
+		</body></html>
 	"""
+
 	response = response.format(settings.S3_BUCKET_DEMO, settings.S3_FILE_DEMO )
 	return HttpResponse(response, content_type="text/html")
 
@@ -81,6 +82,3 @@ def getS3InfoFromFile(httpRequest ):
 	else:
 		response = s3_utils.get_s3_file(s3_file, s3_bucket)
 	return HttpResponse(response, content_type="text/html")
-
-
-

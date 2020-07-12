@@ -9,11 +9,9 @@ RUN apt-get clean
 RUN apt-get update
 RUN apt-get install --yes --no-install-recommends software-properties-common
 RUN apt-get install --yes --no-install-recommends --fix-missing libffi-dev
-RUN apt-get install --yes --no-install-recommends libssl-dev
-RUN apt-get install --yes --no-install-recommends libxml2-dev libxslt1-dev
+RUN apt-get install --yes --fix-missing  libssl-dev
+#libxml2-dev libxslt1-dev libmysqlclient-dev
 RUN apt-get install --yes --no-install-recommends --fix-missing
-RUN apt-get install --yes --no-install-recommends libmysqlclient-dev
-
 # RUN usermod -s /bin/bash abc
 RUN apt-get update
 RUN apt-get install -y curl vim python3.7 python3.7-dev python3.7-distutils python3-venv  python3-pip
@@ -54,7 +52,8 @@ rm -rf \
 ##
 ADD mysite /mysite
 # RUN pip install Django
-RUN pip install -r requirements.txt
+RUN pip install --ignore-installed PyYAML==5.3.1
+RUN pip install -r /mysite/requirements.txt
 # RUN apt-get install --yes --no-install-recommends supervisor
 ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
