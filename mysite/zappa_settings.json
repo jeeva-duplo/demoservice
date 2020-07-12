@@ -1,6 +1,9 @@
 {
-    "dev": { // The name of your stage
-       "django_settings": "mysite.settings" // The python path to your Django settings.
-       "binary_support" : false
+    "dev": {
+        "django_settings": "mysite.settings",
+        "profile_name": null,
+        "project_name": "mysite",
+        "runtime": "python3.7",
+        "s3_bucket": "zappa-ac955jcph"
     }
 }

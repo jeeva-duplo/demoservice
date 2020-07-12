@@ -1,10 +1,10 @@
 {
-   "LambdaFunctions": [{  
-   
+   "LambdaFunctions": [{
+
       "DeadLetterConfig":null,
       "Description":"hello world api gateway",
-      "Environment":{  
-         "Variables":{  
+      "Environment":{
+         "Variables":{
             "expected":"google",
             "site":"https://www.google.com"
          }
@@ -12,8 +12,8 @@
       "FunctionName":"helloworld1",
       "Handler":"handler.lambda_handler",
       "MemorySize":128,
-      "Runtime":"python2.7",
-      "Timeout":7
+      "Runtime":"python3.7",
+      "Timeout":30
    }],
 
    "Triggers" : [
@@ -23,4 +23,3 @@
       }
    ]
 }
-
