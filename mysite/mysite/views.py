@@ -78,7 +78,7 @@ def getS3InfoFromFile(httpRequest ):
 	s3_bucket = httpRequest.GET.get('s3_bucket')
 	print("===== ", s3_bucket, "/", s3_file)
 	if s3_bucket is None or s3_bucket == "" or s3_file is None or s3_file == "":
-		response = "ERROR: parameter s3_bucket and s3_file are required."
+		response = "ERROR: parameter1 s3_bucket and s3_file are required."
 	else:
 		response = s3_utils.get_s3_file(s3_file, s3_bucket)
 	return HttpResponse(response, content_type="text/html")
