@@ -19,9 +19,8 @@ def getInfo(httpRequest):
 	response = """
 		<html><body>
 		</br></br>
-		<h1>Duplocloud BYOH<h1>
-		</br></br>
-		<h4>Bring Your Own Host.<h4>
+		<h1>Duplocloud BYOH</h1>
+		<h4>Bring Your Own Host Demo.</h4>
 		</body></html>
 	"""
 	response = response.format(settings.S3_BUCKET_DEMO, settings.S3_FILE_DEMO )
