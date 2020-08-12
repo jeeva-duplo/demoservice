@@ -1,6 +1,6 @@
 {
 	"Roles": [{
-	"Name": "djangohw",
+	"Name": "byohwebsite",
 	"DockerImage": "duplocloud/anyservice:<hubtag>",
 	"Replicas": 1,
 	"Cloud":4,
@@ -14,7 +14,7 @@
 	"SecondaryTenant": "",
 	"LBConfigurations": [{
 		"Name": "tcp|80",
-		"ReplicationControllerName": "byohsite",
+		"ReplicationControllerName": "byohwebsite",
 		"Protocol": "tcp",
 		"Port": "80",
 		"VirtualIPAddress": null,
