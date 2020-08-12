@@ -14,7 +14,7 @@
 	"SecondaryTenant": "",
 	"LBConfigurations": [{
 		"Name": "tcp|80",
-		"ReplicationControllerName": "pnpsite",
+		"ReplicationControllerName": "byohsite",
 		"Protocol": "tcp",
 		"Port": "80",
 		"VirtualIPAddress": null,
