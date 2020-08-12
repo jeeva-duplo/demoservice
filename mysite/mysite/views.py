@@ -19,23 +19,11 @@ def getInfo(httpRequest):
 	response = """
 		<html><body>
 		</br></br>
-		ENV S3_BUCKET_DEMO =   {0}
+		<h1>Duplocloud BYOH<h1>
 		</br></br>
-		ENV S3_FILE_DEMO = {1}
-		</br></br>
-		</br>
-		<a href="/getInfo"> URI: getInfo</a>
-		</br></br>
-		<a href="/getS3Files">URI: getS3Files (file list)</a>
-		</br></br>
-		<a href="/getS3File">URI:  getS3File (file content)</a>
-		</br></br>
-		<a href="/getS3BucketFiles?s3_bucket={0}">URI:  getS3BucketFiles?s3_bucket={0} (file list with qs-params)</a>
-		</br></br>
-		<a href="/getS3BucketFile?s3_bucket={0}&s3_file={1}"> URI: getS3BucketFile?s3_bucket={0}&s3_file={1}  (file content with qs-params)</a>
+		<h4>Bring Your Own Host.<h4>
 		</body></html>
 	"""
-
 	response = response.format(settings.S3_BUCKET_DEMO, settings.S3_FILE_DEMO )
 	return HttpResponse(response, content_type="text/html")
 
