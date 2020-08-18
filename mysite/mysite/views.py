@@ -19,7 +19,7 @@ def getInfo(httpRequest):
 	response = """
 		<html><body>
 		</br></br>
-		<h1>Duplocloud BYOH</h1>
+		<h1>Duplocloud BYOH Today wert</h1>
 		<h4>Bring Your Own Host Demo.</h4>
 		</body></html>
 	"""
