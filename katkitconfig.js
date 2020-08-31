@@ -9,6 +9,7 @@
 						  "BuildParams":"PHASE=PRE_DEPLOY_BUILD, FOO=BAR1",
 						  "Order":0,
 						  "Parallelism":2,
+						   "IsReplicaCollocationAllowed":"true",
 						  "ContainerImage":"duplocloud/zbuilder:v7"
 					   },
 					   {  
@@ -39,6 +40,7 @@
 						  "BuildParams":"PHASE=PRE_DEPLOY_BUILD, FOO=BAR",
 						  "Order":0,
 						  "Parallelism":2,
+						   "IsReplicaCollocationAllowed":"true",
 						  "ContainerImage":"duplocloud/zbuilder:v7"
 					   },
 					   {  
