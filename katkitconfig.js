@@ -8,7 +8,7 @@
 						  "PhaseType":4,
 						  "BuildParams":"PHASE=PRE_DEPLOY_BUILD, FOO=BAR1",
 						  "Order":0,
-						  "Parallelism":1,
+						  "Parallelism":2,
 						  "ContainerImage":"duplocloud/zbuilder:v7"
 					   },
 					   {  
@@ -38,7 +38,7 @@
 						  "PhaseType":4,
 						  "BuildParams":"PHASE=PRE_DEPLOY_BUILD, FOO=BAR",
 						  "Order":0,
-						  "Parallelism":1,
+						  "Parallelism":2,
 						  "ContainerImage":"duplocloud/zbuilder:v7"
 					   },
 					   {  
