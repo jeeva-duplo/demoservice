@@ -22,7 +22,7 @@ def getInfo(httpRequest):
 		ENV S3_BUCKET_DEMO =   {0}
 		</br></br>
 		ENV S3_FILE_DEMO = {1}
-		</br>demo webapp</br>
+		</br>demo webapp -- charles demo</br>
 		</br>
 		<a href="/getInfo"> URI: getInfo</a>
 		</br></br>
