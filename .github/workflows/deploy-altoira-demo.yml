@@ -1,8 +1,8 @@
 name: Deploy AltoIRA Demo
 on:
-#  push:
-#    branches:
-#      - master
+  push:
+    branches:
+      - master
   workflow_dispatch:  # magically allow triggering from the UI
 env:
   GIT_COMMIT: ${{ github.sha }}
