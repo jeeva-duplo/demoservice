@@ -1,4 +1,4 @@
-name: Deploy AltoIRA Demo
+name: Deploy Demo
 on:
   push:
     branches:
