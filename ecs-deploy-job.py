@@ -13,6 +13,7 @@ duplo_engine =  environ.get('DUPLO_HOST') + '/subscriptions/' + environ.get('DUP
 def deploy_new_service(g_serviceName, aInImage, aInHeaders):
     serviceUrl = duplo_engine + '/GetEcsServices'
     response = requests.get(serviceUrl, headers=aInHeaders)
+    print(response.json())
     serviceDetails = None
     for svc in response.json():
         if svc['Name'] == g_serviceName:
