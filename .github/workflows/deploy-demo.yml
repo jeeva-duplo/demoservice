@@ -50,7 +50,7 @@ jobs:
       
       # Update the backend service to use the new image.
       - name: Deploy
-        uses: duplocloud/ghactions-service-update@master
+        uses: duplocloud/ghactions-service-update@develop
         with:
           tenant: "${{ env.TENANT_NAME }}"
           services: |-
