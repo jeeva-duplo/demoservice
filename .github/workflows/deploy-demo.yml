@@ -6,7 +6,7 @@ on:
   workflow_dispatch:  # magically allow triggering from the UI
 env:
   duplo_host: https://test02.duplocloud.net  # CHANGE ME!
-  duplo_token: "${{ secrets.DUPLO_TOKEN }}"
+  duplo_token: "${{ secrets.TEST02_DUPLO_TOKEN }}"
   SERVICE_NAME: duplodemo                      # CHANGE ME!
   TENANT_NAME: rdstest                        # CHANGE ME!
 
@@ -40,20 +40,20 @@ jobs:
     outputs:
       image: "${{ steps.login-ecr.outputs.registry }}/${{ env.SERVICE_NAME }}:${{ github.sha }}"
 
-    deploy:
-      runs-on: ubuntu-latest
-      needs:
-        - build
-      steps:
-        - name: Checkout
-          uses: actions/checkout@v2
-        
-        # Update the backend service to use the new image.
-        - name: Deploy
-          uses: duplocloud/ghactions-service-update@master
-          with:
-            tenant: "${{ env.TENANT_NAME }}"
-            services: |-
-              [
-                { "Name": "nginx", "Image": "${{ needs.build.outputs.image }}" }
-              ]
+  deploy:
+    runs-on: ubuntu-latest
+    needs:
+      - build
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      
+      # Update the backend service to use the new image.
+      - name: Deploy
+        uses: duplocloud/ghactions-service-update@master
+        with:
+          tenant: "${{ env.TENANT_NAME }}"
+          services: |-
+            [
+              { "Name": "nginx", "Image": "${{ needs.build.outputs.image }}" }
+            ]
