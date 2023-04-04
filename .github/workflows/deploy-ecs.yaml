@@ -73,6 +73,7 @@ jobs:
     needs:
       - prereq
       - build
+    environment: ${{ needs.prereq.outputs.env_name }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
