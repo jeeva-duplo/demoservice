@@ -8,9 +8,9 @@ env:
   GIT_COMMIT: ${{ github.sha }}
   DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
   DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
-  DUPLO_HOST: https://altoira.duplocloud.net
-  DUPLO_TOKEN: ${{ secrets.ALTOIRA_DEMO_DUPLO_TOKEN }}
-  DUPLO_TENANT_ID: "a183548a-6a35-4bdf-9ba6-5b0eed073082"
+  DUPLO_HOST: https://onrampinvest.duplocloud.net
+  DUPLO_TOKEN: ${{ secrets.DUPLO_API_TOKEN }}
+  DUPLO_TENANT_ID: "d26751b5-cf04-4752-a929-572e3fe64ab5"
 jobs:
   image-demoservice:
     runs-on: ubuntu-latest
