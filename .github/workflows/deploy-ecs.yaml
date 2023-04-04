@@ -52,7 +52,7 @@ jobs:
         with:
           tenant: "${{ vars.TENANT_NAME }}"
           duplo_token: "${{ secrets.DUPLO_TOKEN }}"
-          duplo_host: "${{ var.DUPLO_HOST }}"
+          duplo_host: "${{ vars.DUPLO_HOST }}"
       - name: Login to Amazon ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
