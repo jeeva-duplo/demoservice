@@ -6,7 +6,8 @@ on:
   workflow_dispatch:  # magically allow triggering from the UI
 env:
   DUPLO_HOST: https://galileo.duplocloud.net
-  DUPLO_TOKEN: ${{ secrets.DUPLO_API_TOKEN }}
+  DUPLO_TOKEN: ${{ secrets.GALILEO_API_TOKEN }}
+  DUPLO_INFRA_NAME: reddit
 jobs:
   deploy-manifest:
     runs-on: ubuntu-latest
@@ -18,10 +19,24 @@ jobs:
           curl https://github.com/duplocloud/duplo-jit/releases/download/v0.5.4/duplo-jit_0.5.4_linux_386.zip -L -o duplo-jit.zip
           unzip duplo-jit.zip -d duplo_jit_unzipped
           cp duplo_jit_unzipped/duplo-jit /usr/local/bin/
+      - name: "Fetch Kubernetes Cluster info"
+        id: "k8s_info"
+        run: |
+          curl -Ssf -H 'Content-type: application/json' -H "Authorization: Bearer ${{ secrets.GALILEO_API_TOKEN }}" "https://galileo.duplocloud.net/v3/admin/plans/${{ env.DUPLO_INFRA_NAME }}/k8sClusterConfig" > k8sconfig.json
+          CLUSTER_NAME="$(jq -r '.Name' k8sconfig.json)"
+          KUBERNETES_ENDPOINT="$(jq -r '.ApiServer' k8sconfig.json)"
+          KUBERNETES_CERT_DATA="$(jq -r '.CertificateAuthorityDataBase64' k8sconfig.json)"
+          echo "CLUSTER_NAME=$CLUSTER_NAME" >> $GITHUB_OUTPUT
+          echo "KUBERNETES_ENDPOINT=$KUBERNETES_ENDPOINT" >> $GITHUB_OUTPUT
+          echo "KUBERNETES_CERT_DATA=$KUBERNETES_CERT_DATA" >> $GITHUB_OUTPUT
 
       - name: Run kubectl
         run: |
           export KUBECONFIG=kubeconfig.yaml
           sed -i 's#<DUPLO_TOKEN>#${{ secrets.GALILEO_API_TOKEN }}#' kubeconfig.yaml
+          sed -i 's#<CLUSTER_NAME>#${{ steps.k8s_info.outputs.CLUSTER_NAME }}#' kubeconfig.yaml
+          sed -i 's#<KUBERNETES_ENDPOINT>#${{ steps.k8s_info.outputs.KUBERNETES_ENDPOINT }}#' kubeconfig.yaml
+          sed -i 's#<KUBERNETES_CERT_DATA>#${{ steps.k8s_info.outputs.KUBERNETES_CERT_DATA }}#' kubeconfig.yaml
+          sed -i 's#<DUPLO_INFRA_NAME>#${{ env.DUPLO_INFRA_NAME }}#' kubeconfig.yaml
           kubectl get ns
           
