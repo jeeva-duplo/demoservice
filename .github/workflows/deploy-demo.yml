@@ -2,7 +2,7 @@ name: Deploy Demo
 on:
   push:
     branches:
-      - master
+      - master_noapplicable
   workflow_dispatch:  # magically allow triggering from the UI
 env:
   duplo_host: https://test02.duplocloud.net  # CHANGE ME!

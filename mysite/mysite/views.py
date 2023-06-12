@@ -22,7 +22,8 @@ def getInfo(httpRequest):
 		ENV S3_BUCKET_DEMO =   {0}
 		</br></br>
 		ENV S3_FILE_DEMO = {1}
-		</br>demo webapp - axitech demo</br>
+		</br>
+		<h1>demo webapp - This is staging branch</h1></br>
 		</br>
 		<a href="/getInfo"> URI: getInfo</a>
 		</br></br>
