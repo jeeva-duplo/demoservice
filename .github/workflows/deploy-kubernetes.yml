@@ -7,7 +7,7 @@ on:
 env:
   DUPLO_HOST: https://galileo.duplocloud.net
   DUPLO_TOKEN: ${{ secrets.GALILEO_API_TOKEN }}
-  DUPLO_INFRA_NAME: reddit
+  DUPLO_INFRA_NAME: jpmc
 jobs:
   deploy-manifest:
     runs-on: ubuntu-latest
