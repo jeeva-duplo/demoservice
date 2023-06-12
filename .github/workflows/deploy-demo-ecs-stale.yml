@@ -2,7 +2,7 @@ name: Deploy ECS Demo
 on:
   push:
     branches:
-      - master
+      - master_notapplicable
   workflow_dispatch:  # magically allow triggering from the UI
 env:
   GIT_COMMIT: ${{ github.sha }}

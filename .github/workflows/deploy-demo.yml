@@ -2,7 +2,7 @@ name: Deploy Demo
 on:
   push:
     branches:
-      - master
+      - master_noapplicable
   workflow_dispatch:  # magically allow triggering from the UI
 env:
   GIT_COMMIT: ${{ github.sha }}
