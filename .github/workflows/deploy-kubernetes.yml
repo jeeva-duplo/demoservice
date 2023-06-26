@@ -32,11 +32,45 @@ jobs:
 
       - name: Run kubectl
         run: |
-          export KUBECONFIG=kubeconfig.yaml
-          sed -i 's#<DUPLO_TOKEN>#${{ secrets.GALILEO_API_TOKEN }}#' kubeconfig.yaml
-          sed -i 's#<CLUSTER_NAME>#${{ steps.k8s_info.outputs.CLUSTER_NAME }}#' kubeconfig.yaml
-          sed -i 's#<KUBERNETES_ENDPOINT>#${{ steps.k8s_info.outputs.KUBERNETES_ENDPOINT }}#' kubeconfig.yaml
-          sed -i 's#<KUBERNETES_CERT_DATA>#${{ steps.k8s_info.outputs.KUBERNETES_CERT_DATA }}#' kubeconfig.yaml
-          sed -i 's#<DUPLO_INFRA_NAME>#${{ env.DUPLO_INFRA_NAME }}#' kubeconfig.yaml
+          mkdir -p /tmp
+          cat << 'EOF' > /tmp/kubeconfig.yaml
+          apiVersion: v1
+          clusters:
+            - name: <CLUSTER_NAME>
+              cluster:
+                server: <KUBERNETES_ENDPOINT>
+                certificate-authority-data: >-
+                  <KUBERNETES_CERT_DATA>
+          contexts:
+            - name: <CLUSTER_NAME>
+              context:
+                namespace: kube-system
+                user: <CLUSTER_NAME>
+                cluster: <CLUSTER_NAME>
+          users:
+            - name: <CLUSTER_NAME>
+              user:
+                exec:
+                  apiVersion: client.authentication.k8s.io/v1beta1
+                  command: duplo-jit
+                  installHint: |-
+                    Install duplo-jit for use with kubectl by following
+                    https://github.com/duplocloud/duplo-jit
+                  args:
+                    - k8s
+                    - '--plan'
+                    - <DUPLO_INFRA_NAME>
+                    - '--host'
+                    - https://galileo.duplocloud.net/
+                    - '--token'
+                    - '<DUPLO_TOKEN>'
+          current-context: <CLUSTER_NAME>
+          EOF
+          export KUBECONFIG=/tmp/kubeconfig.yaml
+          sed -i 's#<DUPLO_TOKEN>#${{ secrets.GALILEO_API_TOKEN }}#' /tmp/kubeconfig.yaml
+          sed -i 's#<CLUSTER_NAME>#${{ steps.k8s_info.outputs.CLUSTER_NAME }}#' /tmp/kubeconfig.yaml
+          sed -i 's#<KUBERNETES_ENDPOINT>#${{ steps.k8s_info.outputs.KUBERNETES_ENDPOINT }}#' /tmp/kubeconfig.yaml
+          sed -i 's#<KUBERNETES_CERT_DATA>#${{ steps.k8s_info.outputs.KUBERNETES_CERT_DATA }}#' /tmp/kubeconfig.yaml
+          sed -i 's#<DUPLO_INFRA_NAME>#${{ env.DUPLO_INFRA_NAME }}#' /tmp/kubeconfig.yaml
           kubectl get ns
           
